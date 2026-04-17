@@ -44,6 +44,16 @@ box(2.2, 2.2, 2.2)
 render(sample_N=5)
 ```
 
+出力例:
+
+![p3d-ray.py example render](example1.png)
+
+この例のマテリアル設定:
+
+```python
+set_material(base_color=[1, 0.8, 0.8], metalic=1, roughness=0)
+```
+
 実行:
 
 ```bash
@@ -102,22 +112,6 @@ render(sample_N=8)
 | `set_environment_texture(path)` | 全天球風の環境テクスチャを背景に指定 |
 | `camera(theta, aspect, resolution)` | 画角、アスペクト比、解像度を指定 |
 | `render(sample_N=1)` | scene をレイトレーシングして OpenCV window に表示 |
-
-### レンダリングの流れ
-
-```mermaid
-flowchart TD
-    Script[User script] --> API[p3dray public API]
-    API --> Scene[Scene objects and world]
-    API --> Camera[Camera rays]
-    Scene --> RayTracer[RayTracer]
-    Camera --> RayTracer
-    RayTracer --> Intersection[AABB and triangle intersection]
-    Intersection --> Material[material / reflection / transmission]
-    Material --> World[world color or environment texture]
-    World --> Image[RGB image buffer]
-    Image --> OpenCV[OpenCV window]
-```
 
 ### 構成
 
@@ -179,6 +173,16 @@ box(2.2, 2.2, 2.2)
 render(sample_N=5)
 ```
 
+Example output:
+
+![p3d-ray.py example render](example1.png)
+
+Material used in this example:
+
+```python
+set_material(base_color=[1, 0.8, 0.8], metalic=1, roughness=0)
+```
+
 Run:
 
 ```bash
@@ -235,10 +239,6 @@ render(sample_N=8)
 | `set_environment_texture(path)` | set an environment texture |
 | `camera(theta, aspect, resolution)` | configure the camera |
 | `render(sample_N=1)` | trace and display the scene |
-
-### Rendering Flow
-
-See the Mermaid diagram in the Japanese section above. It summarizes how a user script builds a scene, how camera rays are generated, and how the renderer traces intersections, materials, and world lighting before displaying an image through OpenCV.
 
 ### Notes
 
